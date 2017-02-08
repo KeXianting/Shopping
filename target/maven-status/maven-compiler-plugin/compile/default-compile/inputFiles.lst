@@ -1,5 +1,5 @@
-/root/Documents/workspace-sts-3.8.3.RELEASE/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductService.java
-/root/Documents/workspace-sts-3.8.3.RELEASE/Shopping/src/main/java/com/emreshome/Shopping/MainController.java
-/root/Documents/workspace-sts-3.8.3.RELEASE/Shopping/src/main/java/com/emreshome/Shopping/Entity/Product.java
-/root/Documents/workspace-sts-3.8.3.RELEASE/Shopping/src/main/java/com/emreshome/Shopping/dao/ProductRepository.java
-/root/Documents/workspace-sts-3.8.3.RELEASE/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductServiceImpl.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductServiceImpl.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductService.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Entity/Product.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/repositories/ProductRepository.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/MainController.java

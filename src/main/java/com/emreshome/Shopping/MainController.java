@@ -17,13 +17,10 @@ import com.emreshome.Shopping.Service.ProductService;
 
 @Controller
 public class MainController {
+	 
+	 @Autowired 
+	 private ProductService productService;
 	
-	/*TODO
-	 * 
-	 *@Autowired
-	 *
-	 *private ProductService productService;
-	*/
 	
 	@RequestMapping(value = "/",method=RequestMethod.GET)
 	public String hello(ModelMap model){
@@ -31,15 +28,11 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/list",method=RequestMethod.POST)
-	public String list(ModelMap model,@ModelAttribute("name") String name) {
-		model.addAttribute("name",name);
-		//List<Product> P=productService.findAll();
+	@RequestMapping(value = "/list",method=RequestMethod.GET)
+	public String list(ModelMap model) {
+		List<Product> P=productService.findAll();
 		
-		/*for(Product p:P){
-			
-			System.out.println(p.getPrice());
-		}*/
+		model.addAttribute("items", P);
 		return "list";
 	}
 }
