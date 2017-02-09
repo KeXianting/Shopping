@@ -1,6 +1,14 @@
-# This is first commit, just to create new repo and new maven project.
-# A basic Shopping cart site will be created step by step.
-# Spring Framework, hibernate will be used.
+ #Shopping
 
+ #v-0.0.1 Base configuration in Spring and Hibernate
 
-# To run import eclipse as maven project and run as maven build with goals tomcat7:run
+##What is new
+* MySql datasource
+* inserting data from jsp
+* **It is first version**
+
+##How To Run
+1.Set up your MySql with given *db.sql* file
+2.Import eclipse as maven project
+3.Run as maven build with goal 'tomcat7:run'
+
