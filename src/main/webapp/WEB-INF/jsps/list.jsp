@@ -33,5 +33,20 @@
     </table>
   
 <hr>
+
+<form method="POST" action="${contextPath}/list" class="form-signin">
+        <h2 class="form-heading">Add Product</h2>
+
+        <div class="form-group ${error != null ? 'has-error' : ''}">
+            <input name="name" type="text" class="form-control" placeholder="Item name"
+                   autofocus="true"/>
+            </br>
+            <input type="number" name="price"  placeholder="Price">
+            <br>
+            <button class="btn btn-lg btn-primary" type="submit">Add</button>
+           
+        </div>
+
+    </form>
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.emreshome.Shopping.Entity.Product;
 
 public interface ProductService {
 
-		Product findByCode(String code);
+		Product findById(long id);
 		List<Product> findAll();
+		void save(Product product);
 }

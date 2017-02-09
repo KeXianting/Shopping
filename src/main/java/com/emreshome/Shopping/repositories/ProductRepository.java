@@ -9,6 +9,7 @@ import com.emreshome.Shopping.Entity.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long>{
-	Product findByCode(String code);
+	Product findById(long id);
 	List<Product> findAll();
+	
 }

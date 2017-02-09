@@ -1,5 +1,6 @@
 package com.emreshome.Shopping;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,26 @@ public class MainController {
 	
 	@RequestMapping(value = "/",method=RequestMethod.GET)
 	public String hello(ModelMap model){
-		System.out.println("hello");
+		
 		return "index";
 	}
 	
 	@RequestMapping(value = "/list",method=RequestMethod.GET)
 	public String list(ModelMap model) {
 		List<Product> P=productService.findAll();
-		
+		for(Product p:P){
+			System.out.println(p.toString());
+			
+		}
+	
 		model.addAttribute("items", P);
 		return "list";
+	}
+	@RequestMapping(value = "/list",method=RequestMethod.POST)
+	public String addProduct(ModelMap model, @ModelAttribute Product product){
+		product.setCreateDate(new java.sql.Date(System.currentTimeMillis()));
+		productService.save(product);
+		return "redirect:/list";
+		
 	}
 }

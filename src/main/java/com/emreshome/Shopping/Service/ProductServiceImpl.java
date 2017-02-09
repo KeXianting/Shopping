@@ -12,14 +12,13 @@ import com.emreshome.Shopping.repositories.ProductRepository;
 
 //TODO
 @Service
-@Transactional
 public class ProductServiceImpl implements ProductService{
 	//TODO
 	@Autowired
 	private ProductRepository productRepository;
 	
-	public Product findByCode(String code) {
-		return productRepository.findByCode(code);
+	public Product findById(long id) {
+		return productRepository.findById(id);
 	}
 
 	public List<Product> findAll() {
@@ -27,4 +26,11 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findAll();
 	}
 
+	@Override
+	public void save(Product product) {
+		productRepository.save(product);
+		
+	}
+
+	
 }

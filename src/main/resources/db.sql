@@ -1,22 +1,23 @@
 create DATABASE IF NOT EXISTS shopping;
+connect shopping;
 
-create table Products (
-        Code varchar(20) not null,
-        Create_Date datetime not null,
-        Image longblob,
-        Name varchar(255) not null,
-        Price double precision not null,
-        primary key (Code)
+create table products (
+        id int(11) NOT NULL AUTO_INCREMENT,
+        createdate datetime not null,
+        image longblob,
+        name varchar(255) not null,
+        price double precision not null,
+        primary key (id)
     );
 
 
-insert into Products (CODE, NAME, PRICE, CREATE_DATE) 
-values ('S001', 'Item1', 50, '2013-01-01' );
+insert into Products ( NAME, PRICE, CREATE_DATE) 
+values ('Item1', 50, '2013-01-01' );
 
-insert into Products (CODE, NAME, PRICE, CREATE_DATE) 
-values ('S002', 'Item2', 50, '2013-01-01' );
+insert into Products ( NAME, PRICE, CREATE_DATE) 
+values ('Item2', 50, '2013-01-01' );
 
-insert into Products (CODE, NAME, PRICE, CREATE_DATE) 
-values ('S003', 'Item3', 50, '2013-01-01' );
+insert into Products ( NAME, PRICE, CREATE_DATE) 
+values ('Item3', 50, '2013-01-01' );
 
  

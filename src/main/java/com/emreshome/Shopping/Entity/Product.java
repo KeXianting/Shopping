@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -12,35 +14,35 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="Products")
-public class Product implements Serializable{
+@Table(name="products")
+public class Product {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	
 	
-	 private String code;
+	 private Long id;
+	 
 	 private String name;
 	 private double price;
 	 private byte[] image;
-	 private Date createDate;
+	 private Date createdate;
+	 
 	    public Product() {
 	    }
 	 
 	    @Id
-	    @Column(name = "Code", length = 20, nullable = false)
-	    public String getCode() {
-	        return code;
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    public Long getId() {
+	        return id;
 	    }
 	 
-	    public void setCode(String code) {
-	        this.code = code;
+	    public void setId(long id) {
+	        this.id = id;
 	    }
 	 
-	    @Column(name = "Name", length = 255, nullable = false)
-	    public String getName() {
+	     public String getName() {
 	        return name;
 	    }
 	 
@@ -48,7 +50,6 @@ public class Product implements Serializable{
 	        this.name = name;
 	    }
 	 
-	    @Column(name = "Price", nullable = false)
 	    public double getPrice() {
 	        return price;
 	    }
@@ -58,23 +59,26 @@ public class Product implements Serializable{
 	    }
 	 
 	    @Temporal(TemporalType.TIMESTAMP)
-	    @Column(name = "Create_Date", nullable = false)
 	    public Date getCreateDate() {
-	        return createDate;
+	        return createdate;
 	    }
 	 
 	    public void setCreateDate(Date createDate) {
-	        this.createDate = createDate;
+	        this.createdate = createDate;
 	    }
 	 
 	    @Lob
-	    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
 	    public byte[] getImage() {
 	        return image;
 	    }
 	 
 	    public void setImage(byte[] image) {
 	        this.image = image;
+	    }
+	    
+	    public String toString(){
+			return "Product: " + name + " with price " + price + " ("+createdate+")";
+	    	
 	    }
 	 
 
