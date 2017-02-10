@@ -1,5 +1,10 @@
 /home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductServiceImpl.java
 /home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/ProductService.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/UserService.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/repositories/UserRepository.java
 /home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Entity/Product.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Entity/User.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/UserDetailsServiceImpl.java
+/home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/Service/UserServiceImpl.java
 /home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/repositories/ProductRepository.java
 /home/emre/Projects/Shopping/src/main/java/com/emreshome/Shopping/MainController.java

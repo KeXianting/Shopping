@@ -25,7 +25,9 @@ public class Product {
 	 private Long id;
 	 
 	 private String name;
-	 private double price;
+	 private String description;
+	
+	private double price;
 	 private byte[] image;
 	 private Date createdate;
 	 
@@ -49,6 +51,14 @@ public class Product {
 	    public void setName(String name) {
 	        this.name = name;
 	    }
+	    public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
 	 
 	    public double getPrice() {
 	        return price;
@@ -77,7 +87,7 @@ public class Product {
 	    }
 	    
 	    public String toString(){
-			return "Product: " + name + " with price " + price + " ("+createdate+")";
+			return "Product: " + name + " with price " + price + " --[ "+description+" ]-- ("+createdate+")";
 	    	
 	    }
 	 
