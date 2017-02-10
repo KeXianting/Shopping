@@ -17,10 +17,11 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Override
 	public Product findById(long id) {
 		return productRepository.findById(id);
 	}
-
+	@Override
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
 		return productRepository.findAll();
