@@ -9,6 +9,7 @@
  
     <http auto-config="true">
     	 <intercept-url pattern="/manager" access="hasRole('ROLE_ADMIN')"/>
+       <intercept-url pattern="/editProduct" access="hasRole('ROLE_ADMIN')"/>
        
  		    <intercept-url pattern="/*" access="permitAll"/>
        	
