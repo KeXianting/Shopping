@@ -1,5 +1,13 @@
 #Shopping
 
+#v-0.0.3 Shopping cart is added and product edit page is added
+##What is new
+
+* Customers can add items into their carts with specifying quantity
+* Admin edit page for single product
+* In cart page one can see subtotal price of products.
+
+
 #v-0.0.2 Security implementation and basic authenication
 
 ##What is new
