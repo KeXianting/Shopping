@@ -9,11 +9,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-  
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
     <title>Log in with your account</title>
     
 	<spring:url value="/resources/css/style.css" var="stylecss"/>  
 	<link href="${stylecss}" rel="stylesheet"/>  
+<spring:url value="/resources/css/bootstrap.min.css" var="style2css"/>  
+	<link href="${style2css}" rel="stylesheet"/>  
 
 </head>
 
@@ -28,7 +31,7 @@
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
+                   autofocus="true"/> <br>
             <input name="password" type="password" class="form-control" placeholder="Password"/>
               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
            
@@ -44,8 +47,6 @@
     </form>
 
 </div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
  <jsp:include page="_footer.jsp" />
 </body>

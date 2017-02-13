@@ -1,5 +1,7 @@
 package com.emreshome.Shopping;
 
+import java.awt.ItemSelectable;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +25,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.emreshome.Shopping.Entity.Product;
 import com.emreshome.Shopping.Entity.User;
+import com.emreshome.Shopping.Service.CartUtil;
 import com.emreshome.Shopping.Service.ProductService;
 import com.emreshome.Shopping.Service.UserService;
+import com.emreshome.Shopping.model.Cart;
+import com.emreshome.Shopping.model.ProductInCart;
+import com.emreshome.Shopping.model.ProductInfo;
 import com.emreshome.Shopping.repositories.UserRepository;
 
 @Controller
@@ -58,10 +64,7 @@ public class MainController {
 	@RequestMapping(value = "/list",method=RequestMethod.GET)
 	public String list(ModelMap model) {
 		List<Product> P=productService.findAll();
-		for(Product p:P){
-			System.out.println(p.toString());
-			
-		}
+	
 		 if(isAuthenticated()){
 			  Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			  User u=userService.findByUsername(((org.springframework.security.core.userdetails.User)userDetails).getUsername());
@@ -71,13 +74,43 @@ public class MainController {
 		  model.addAttribute("items", P);
 		return "list";
 	}
-	@RequestMapping(value = "/list",method=RequestMethod.POST)
-	public String addProduct(ModelMap model, @ModelAttribute Product product){
+	@RequestMapping(value = "/manager",method=RequestMethod.POST)
+	public String list(ModelMap model, @ModelAttribute Product product){
 		product.setCreateDate(new java.sql.Date(System.currentTimeMillis()));
 		productService.save(product);
 		return "redirect:/list";
 		
 	}
+	
+	@RequestMapping(value = "/add",method=RequestMethod.POST)
+	public String addProduct(HttpServletRequest request,ModelMap model,
+			@RequestParam(value="id",defaultValue="") Long id,
+			@RequestParam("quantity") int q){
+		if(id>0 && q>=1){
+			Cart myCart = CartUtil.getCartInSession(request);
+			
+			 myCart.addProduct(productService.findById(id),q);
+		}
+		else{
+			//TODO
+			System.out.println("error");
+		}
+		
+		return "redirect:/list";
+	}
+
+	@RequestMapping(value = "/delete",method=RequestMethod.GET)
+	public String deleteProduct(HttpServletRequest request,ModelMap model,
+			@RequestParam(value="id",defaultValue="") Long id){
+		if(id>0){
+			Cart myCart = CartUtil.getCartInSession(request);
+			
+			 myCart.deleteProduct(productService.findById(id));
+		}
+		
+		return "redirect:/myCard";
+	}
+	
 	@RequestMapping(value = "/manager",method=RequestMethod.GET)
 	public String manager(ModelMap model) {
 		List<Product> P=productService.findAll();
@@ -93,7 +126,7 @@ public class MainController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(Model model, String error, String logout){
 		 if (error != null){
-	            model.addAttribute("error", "Your username and password is invalid.");
+	            model.addAttribute("error", "Your username or password is invalid.");
 	            
 	            return "login";
 		 }
@@ -106,12 +139,36 @@ public class MainController {
 	     
 		
 	}
+	@RequestMapping(value="/editProduct", method = RequestMethod.GET)
+	public String editProduct(HttpServletRequest request,ModelMap model,@RequestParam(value="id", defaultValue="") Long id){
+		model.addAttribute("item", productService.findById(id));
+		return "edit-admin";
+	}
+	@RequestMapping(value="/editProduct", method = RequestMethod.POST)
+	public String editSaveProduct(HttpServletRequest request,ModelMap model,
+			@ModelAttribute Product product){
+		System.out.println(product.getId());
+		Product del=productService.findById(product.getId());
+		product.setCreateDate(del.getCreateDate());
+		productService.delete(del);
+		productService.save(product);
+		return "redirect:/list";
+	}
+	@RequestMapping(value="/myCard", method = RequestMethod.GET)
+	public String myCard(HttpServletRequest request,Model model){
+		Cart myCart = CartUtil.getCartInSession(request);
+		 for(ProductInCart p:myCart.getProducts())
+			 System.out.println(p.getPrice());
+			 model.addAttribute("items", myCart.getProducts());
+		return "mycart";
+	}
+	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	    return "redirect:/login?logout";
 	}
 }
